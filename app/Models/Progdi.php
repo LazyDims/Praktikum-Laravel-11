@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Progdi extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['nm_fakultas', 'nm_progdi'];
 }

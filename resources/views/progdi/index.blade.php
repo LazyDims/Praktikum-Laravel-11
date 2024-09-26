@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Prodi Mahasiswa</title>
+    <title>{{ 'Prodi Mahasiswa' }}</title>
     @vite('resources/css/app.css')
 
 </head>
@@ -13,8 +13,9 @@
     <h2 class="text-2xl flex justify-center p-4">
         Halaman Data Program Studi
     </h2>
-    <div class="mb-2">
-    </div>
+    <a href="{{ route('progdi.create') }}"
+        class="ml-7 text-white hover:text-black inline-block p-2 bg-green-700 border-spacing-28 rounded">Tambah
+        Progdi</a>
     <table>
         <tr>
             <div class="flex flex-col mt-8">
@@ -31,42 +32,52 @@
                                         class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                         Nama Fakultas</th>
                                     <th
-                                        class="px-6 py-3 text-xs font-medium leading-4  text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                         Nama Program Studi</th>
-                                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50">Action</th>
+                                    <th
+                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                        Action</th>
                                 </tr>
                             </thead>
 
                             <tbody class="bg-white">
-                                <tr>
-                                    <td class=" whitespace-no-wrap border-b border-gray-200">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 w-10 h-10">
-                                            </div>
-
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">John Doe
+                                @foreach ($progdi as $p)
+                                    <tr>
+                                        <td class="whitespace-no-wrap border-b border-gray-200">
+                                            <div class="flex items-center ml-6">
+                                                <div class="w-5 h-5">
+                                                    <div class="text-sm font-medium text-gray-900">
+                                                        {{ $p->id }}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        <div class="text-sm leading-5 text-gray-900">Software Engineer</div>
-
-                                    </td>
-
-                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                        <span
-                                            class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
-                                    </td>
-
-                                    <td
-                                        class="px-6 py-4 text-sm font-medium leading-5 text-center whitespace-no-wrap border-b border-gray-200">
-                                        <a href="#" class="text-indigo-600 hover:text-indigo-900 ">Edit</a>
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                            <div class="text-sm leading-5 text-gray-900">{{ $p->nm_fakultas }} </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                            <div class="text-sm leading-5 text-gray-900">{{ $p->nm_progdi }} </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 ">
+                                            <form action="{{ route('progdi.destroy', $p->id) }}" method="POST">
+                                                <a href="{{ route('progdi.edit', $p->id) }}"
+                                                    class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="text-red-600 hover:text-red-900">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
+                        {{ $progdi->links() }}
+                    </div>
+                </div>
+            </div>
+        </tr>
+    </table>
 </body>
 
 </html>

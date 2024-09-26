@@ -12,7 +12,7 @@ class ProgdiController extends Controller
      */
     public function index()
     {
-        $progdi = Progdi::orderBy('id','desc')->paginate(5);
+        $progdi = Progdi::orderBy('id','asc')->paginate(5);
         return view('progdi.index',compact('progdi'));
     }
 
@@ -35,7 +35,7 @@ class ProgdiController extends Controller
         ]);
 
         Progdi::create($request->post());
-        return redirect()->route('prodi.index')->with('success','Data Berhasil Disimpan');
+        return redirect()->route('progdi.index')->with('success','Data Berhasil Disimpan');
     }
 
     /**
