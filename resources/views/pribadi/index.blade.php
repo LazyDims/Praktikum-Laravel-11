@@ -2,18 +2,18 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ 'Prodi Mahasiswa' }}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ 'Data Mahasiswa' }} </title>
     @vite('resources/css/app.css')
-
 </head>
 
 <body>
     <h2 class="text-2xl flex justify-center p-4">
-        Data Program Studi
+        Data Mahasiswa
     </h2>
-    <a href="{{ route('progdi.create') }}"
+    <a href="{{ route('pribadi.create') }}"
         class="ml-7 text-white hover:text-black inline-block p-2 bg-green-700 border-spacing-28 rounded">Tambah
         Progdi</a>
     <table>
@@ -30,10 +30,13 @@
                                         No.</th>
                                     <th
                                         class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                        Nama Fakultas</th>
+                                        NIK</th>
                                     <th
                                         class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                        Nama Program Studi</th>
+                                        Nama Mahasiswa</th>
+                                    <th
+                                        class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                        Tempat Tanggal Lahir</th>
                                     <th
                                         class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                         Action</th>
@@ -41,26 +44,31 @@
                             </thead>
 
                             <tbody class="bg-white">
-                                @foreach ($progdi as $p)
+                                @foreach ($pribadi as $pr)
                                     <tr>
                                         <td class="whitespace-no-wrap border-b border-gray-200">
                                             <div class="flex items-center ml-6">
                                                 <div class="w-5 h-5">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        {{ $p->id }}
+                                                        {{ $pr->id }}
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-900">{{ $p->nm_fakultas }} </div>
+                                            <div class="text-sm leading-5 text-gray-900">{{ $pr->nik }} </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-900">{{ $p->nm_progdi }} </div>
+                                            <div class="text-sm leading-5 text-gray-900">{{ $pr->nama_mhs }}
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                            <div class="text-sm leading-5 text-gray-900">{{ $pr->tempat_lahir }} /
+                                                {{ $pr->tanggal_lahir }} </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 ">
-                                            <form action="{{ route('progdi.destroy', $p->id) }}" method="POST">
-                                                <a href="{{ route('progdi.edit', $p->id) }}"
+                                            <form action="{{ route('pribadi.destroy', $pr->id) }}" method="POST">
+                                                <a href="{{ route('pribadi.edit', $pr->id) }}"
                                                     class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                                 @csrf
                                                 @method('DELETE')
@@ -72,7 +80,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{ $progdi->links() }}
+                        {{ $pribadi->links() }}
                     </div>
                 </div>
             </div>

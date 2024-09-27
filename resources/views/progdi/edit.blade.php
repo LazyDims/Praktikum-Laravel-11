@@ -13,7 +13,7 @@
     <div class="container mt-2">
         <div class="row">
             <h2 class="text-2xl flex justify-center p-4">
-                Tambah Program Studi
+                Edit Program Studi
             </h2>
             <a href="{{ route('progdi.index') }}"
                 class="ml-7 text-white hover:text-black inline-block p-2 bg-blue-700 rounded">Kembali</a>
