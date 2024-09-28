@@ -12,7 +12,7 @@ class ProgdiController extends Controller
      */
     public function index()
     {
-        $progdi = Progdi::orderBy('id','asc')->paginate(5);
+        $progdi = Progdi::orderBy('id_progdi','asc')->paginate(10);
         return view('progdi.index',compact('progdi'));
     }
 
