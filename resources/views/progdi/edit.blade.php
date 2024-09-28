@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ 'Edit Data Progdi' }} </title>
-    @vite('resources/css/app.css')
-</head>
-
-<body>
+<x-layout>
     <div class="flex justify-center pt-5">
         <h1 class="text-3xl">
             Data Program Studi
@@ -17,8 +6,7 @@
     </div>
     <div class="flex items-center justify-center p-12">
         <div class="mx-auto w-full max-w-[550px]">
-            <form action="{{ route('progdi.update', $progdi->id_progdi) }}" method="POST"
-                enctype="multipart/form-data">
+            <form action="{{ route('progdi.update', $progdi->id_progdi) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="mb-5">
@@ -57,6 +45,4 @@
             </form>
         </div>
     </div>
-</body>
-
-</html>
+</x-layout>
