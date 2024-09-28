@@ -10,9 +10,10 @@
 </head>
 
 <body>
-    <h2 class="text-2xl flex justify-center p-4">
+    <x-navbar></x-navbar>
+    <h1 class="text-3xl flex justify-center p-4">
         Data Program Studi
-    </h2>
+    </h1>
     <a href="{{ route('progdi.create') }}"
         class="ml-7 text-white hover:text-black inline-block p-2 bg-green-700 border-spacing-28 rounded">Tambah
         Progdi</a>
@@ -47,7 +48,7 @@
                                             <div class="flex items-center ml-6">
                                                 <div class="w-5 h-5">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        {{ $p->id }}
+                                                        {{ $p->id_progdi }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -59,13 +60,13 @@
                                             <div class="text-sm leading-5 text-gray-900">{{ $p->nm_progdi }} </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 ">
-                                            <form action="{{ route('progdi.destroy', $p->id) }}" method="POST">
-                                                <a href="{{ route('progdi.edit', $p->id) }}"
-                                                    class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                            <form action="{{ route('progdi.destroy', $p->id_progdi) }}" method="POST">
+                                                <a href="{{ route('progdi.edit', $p->id_progdi) }}"
+                                                    class="text-white hover:text-gray-400 bg-blue-900 rounded p-2">Edit</a>
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                    class="text-red-600 hover:text-red-900">Delete</button>
+                                                    class="text-white hover:text-gray-400 bg-red-900 p-2 rounded">Delete</button>
                                             </form>
                                         </td>
                                     </tr>

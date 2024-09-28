@@ -10,4 +10,5 @@ class Progdi extends Model
     use HasFactory;
 
     protected $fillable = ['nm_fakultas', 'nm_progdi'];
+    protected $primaryKey= 'id_progdi';
 }

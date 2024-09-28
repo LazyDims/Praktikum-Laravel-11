@@ -12,7 +12,7 @@ class PribadiController extends Controller
      */
     public function index()
     {
-        $pribadi = Pribadi::orderBy('id', 'asc')->paginate(5);
+        $pribadi = Pribadi::orderBy('id', 'asc')->paginate(10);
         return view('pribadi.index', compact('pribadi'));
     }
 
