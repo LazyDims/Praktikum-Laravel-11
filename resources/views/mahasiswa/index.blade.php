@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-
-<body>
+<x-layout>
     <x-navbar></x-navbar>
-
-</body>
-
-</html>
+    <h1 class="text-3xl flex justify-center py-5 mx-5">
+        Data Mahasiswa
+    </h1>
+</x-layout>
