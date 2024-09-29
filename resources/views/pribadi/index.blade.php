@@ -1,5 +1,4 @@
 <x-layout>
-    <x-navbar></x-navbar>
     <h1 class="text-3xl flex justify-center py-5 mx-5">
         Data Pribadi
     </h1>
@@ -9,7 +8,7 @@
             Data Pribadi</a>
         <thead>
             <tr
-                class="text-md font-semibold tracking-wide text-left text-gray-600 bg-gray-100 uppercase  border-b border-gray-600">
+                class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 capitalize border-gray-600">
                 <th class="px-4 py-3">No</th>
                 <th class="px-4 py-3">NIK</th>
                 <th class="px-4 py-3">Nama Mahasiswa</th>

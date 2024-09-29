@@ -10,6 +10,7 @@
 </head>
 
 <body class="bg-teal-100">
+    <x-navbar></x-navbar>
     {{ $slot }}
 </body>
 

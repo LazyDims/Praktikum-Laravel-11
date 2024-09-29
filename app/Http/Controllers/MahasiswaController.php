@@ -15,7 +15,11 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $mahasiswa = DB::table('pribadis')->select('pribadis.id_pribadi', 'pribadis.nama_mhs', 'mahasiswas.id_pri', 'mahasiswas.id_pro', 'mahasiswas.nim', 'progdis.nm_fakultas', 'progdis.nm_progdi', 'mahasiswas.id_mhs')->leftJoin('mahasiswas', 'pribadis.id_pribadi', '=', 'mahasiswas.id_pri')->leftJoin('progdis', 'mahasiswas.id_pro', '=', 'progdis.id_progdi')->orderBy('pribadis.id_pribadi', 'desc')->paginate(10);
+        $mahasiswa = DB::table('pribadis')
+        ->select('pribadis.id_pribadi', 'pribadis.nama_mhs', 'mahasiswas.id_pri', 'mahasiswas.id_pro', 'mahasiswas.nim','progdis.nm_fakultas', 'progdis.nm_progdi', 'mahasiswas.id_mhs')
+        ->leftJoin('mahasiswas', 'pribadis.id_pribadi', '=', 'mahasiswas.id_pri')
+        ->leftJoin('progdis', 'mahasiswas.id_pro', '=', 'progdis.id_progdi')
+        ->orderBy('pribadis.id_pribadi', 'asc')->paginate(10);
 
         return view('mahasiswa.index', compact('mahasiswa'));
     }
@@ -28,7 +32,7 @@ class MahasiswaController extends Controller
         $pribadi = DB::table('pribadis')->where('id_pribadi', $id_pribadi)->get();
         $progdi = Progdi::all();
 
-        return view('mahasiswa.join', ['pribadi' => $pribadi], ['progdi' => $progdi]);
+        return view('mahasiswa/join', ['pribadi' => $pribadi], ['progdi' => $progdi]);
     }
 
     /**
@@ -38,8 +42,8 @@ class MahasiswaController extends Controller
     {
         DB::table('mahasiswas')->insert([
             'nim' => $request->nim,
-            'id_pri' => $request->id_pri,
-            'id_pro' => $request->id_pro,
+            'id_pri' => $request->id_pribadi,
+            'id_pro' => $request->id_progdi,
         ]);
         return redirect()->route('mahasiswa.index')->with('success', 'Data Mahasiswa Baru Berhasil Disimpan');
     }
@@ -50,9 +54,9 @@ class MahasiswaController extends Controller
         $pribadi = DB::table('pribadis')
             ->leftJoin('mahasiswas', 'pribadis.id_pribadi', '=', 'mahasiswas.id_pri')
             ->select('pribadis.id_pribadi', 'pribadis.nik', 'pribadis.tempat_lahir', 'pribadis.tanggal_lahir', 'pribadis.nama_mhs', 'mahasiswas.nim')
-            ->where('pribadis.nama_mhs', 'like', '%' . $keyword . '%')
+            ->where('pribadis.nama_mhs', 'like', value: '%' . $keyword . '%')
             ->get();
-        return view('mahasiswa.search', compact('pribadi'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('mahasiswa.search', compact('pribadi'))->with('i', (request()->input('page', default: 1) - 1) * 5);
     }
 
     /**
