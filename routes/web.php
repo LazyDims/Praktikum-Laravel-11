@@ -13,7 +13,7 @@ Route::get('/', function () {
 Route::resource('home', HomeController::class);
 Route::resource('progdi', ProgdiController::class);
 Route::resource('pribadi', PribadiController::class);
-
 Route::resource('mahasiswa', MahasiswaController::class);
+
 Route::get('/search',[MahasiswaController::class, 'search'])->name('search');
 Route::get('mahasiswa/join/{id}','App\Http\Controllers\MahasiswaController@join' );
